@@ -1,0 +1,43 @@
+{% if paginate['pages'] > 1 %}
+
+  <ul class="pagination">
+
+    {% if paginate.previous %}
+      <li class="pagination__item  pagination__item--prev  hvr-radial-out">
+        <a href="{{ paginate.previous.url }}" class="pagination__link"><i class="fa fa-angle-left"></i></a>
+      </li>
+    {% endif %}
+
+    {% for part in paginate.parts %}
+      {% if part.title == paginate['current_page'] %}
+        <li class="pagination__item active">
+          <span class="pagination__link">
+            {{ part.title }}
+          </span>
+        </li>
+      {% else %}
+
+        {% if part.is_link %}
+          <li class="pagination__item  hvr-radial-out">
+            <a href="{{ part.url }}" class="pagination__link">
+              {{ part.title }}
+            </a>
+          </li>
+        {% else %}
+          <li class="pagination__item  hvr-radial-out">
+            <span class="pagination__link is-static">
+              {{ part.title }}
+            </span>
+          </li>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    {% if paginate.next %}
+      <li class="pagination__item  pagination__item--next  hvr-radial-out">
+        <a href="{{ paginate.next.url }}" class="pagination__link"><i class="fa fa-angle-right"></i></a>
+      </li>
+    {% endif %}
+
+  </ul><!-- /.pagination -->
+{% endif %}

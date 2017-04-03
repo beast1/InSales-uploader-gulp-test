@@ -1,0 +1,51 @@
+<footer class="page-footer">
+  <div class="page-footer__container">
+    <div class="page-footer__top-section">
+      <div class="vk-subscibe--mini">
+        <span class="vk-subscibe--mini__promo">Быть в курсе всех событий:</span>
+        <div class="vk-subscibe--mini__content">
+          <div id="vk_subscribe"></div>
+        </div>
+      </div>
+    </div>
+    <div class="page-footer__bottom-section">
+      <div class="page-footer__help">
+        <div class="page-footer__fieldset">
+          <p class="page-footer__phones">
+            +7 (926) 542-15-74<br>
+            +7 (965) 291-59-11
+            <span class="page-footer__mail--xl">Info@wadge.ru</span>
+          </p>
+          <p class="page-footer__pcard">
+            <span class="page-footer__mail">Info@wadge.ru</span>
+          </p>
+          
+        </div>
+      </div>
+      <div class="page-footer__social">
+        {% for link in linklists.social-list.links limit:10 %}
+          <a href="{{ link.url }}" title="{{ link.title }}" class="page-footer__social-item  hvr-radial-out"></a>
+        {% endfor %}
+      </div>
+    </div>
+      <!--<div class="logotype ">
+      {% if settings.logotype_type == 'image' %}
+
+      <a title="{{ account.title }}" href="/" class="logotype-link">
+        <img src="https://static-internal.insales.ru/files/1/6486/3037526/original/las-b.png" class="logotype-image" alt="{{ account.title }}" title="{{ account.title }}" />
+      </a>
+
+      {% else %}
+
+        <a title="{{ account.title }}" href="/" class="logotype-link">
+          <span class="logotype-text">{{ account.title | editable }}</span>
+        </a>
+
+      {% endif %}
+
+    </div>--><!-- /.logotype -->
+    </div>
+  <script type="text/javascript">
+    VK.Widgets.Subscribe("vk_subscribe", {}, -143194407);
+  </script>
+</footer>

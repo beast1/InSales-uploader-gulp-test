@@ -1,0 +1,48 @@
+<div class="top-toolbar">
+  <div class="wrapper">
+
+    <div class="mobile-toolbar">
+      <button class="button left-toolbar-trigger" type="button"><i class="icon ion-navicon"></i></button>
+    </div><!-- /.mobile-toolbar -->
+    
+    <div class="catalog-link-wrapper"><!--list-item-->
+      <a href="http://wadge.ru/collection/wadge-250-gr" class="catalog-link  hvr-rectangle-out" title="Каталог">
+        Каталог
+      </a>
+    </div>
+	
+    <div class="mob-user-block">
+      <button class="mob-user-block__item modal-search-btn js-md-search-toggle" type="button"></button>
+      
+      <button class="mob-user-block__item user-home-btn" type="button"></button>
+	  <div class="mob-basket-wrapper">
+        <a class="mob-user-block__item  button shopcart-link js-shopcart-area" href="{{ cart_url }}"></a>
+        <a class="shopcart-count" href="{{ cart_url }}"><span class="shopcart-count__value js-shopcart-amount">{{ cart.items_count }}</span></a>
+      </div>
+    </div>
+
+  </div>
+</div><!-- /.top-toolbar -->
+
+<div class="md-search">
+      <form action="/search" method="get" class="md-search__container  search-widget-form">
+
+            <input type="hidden" name="lang" value="{{ language.locale }}">
+
+            <input id="search-widget-input" class="input-field search-input" type="text" placeholder="{{ messages.search_title }}" name="q"  value="{% if search.query != empty %}{{ search.query }}{% endif %}"/>
+
+            <button class="button button-circle is-primary search-button" type="submit">
+              <i class="icon search-icon ion-ios-search"></i>
+            </button>
+
+          </form>
+    </div>
+    <script type="text/javascript">
+      var btnSearchToggle = document.querySelector(".js-md-search-toggle");
+      var mdSearch = document.querySelector(".md-search");
+
+      btnSearchToggle.addEventListener("click", function(event) {
+        event.preventDefault();
+        mdSearch.classList.toggle("md-search--visible");
+      });
+    </script>

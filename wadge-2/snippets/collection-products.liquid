@@ -1,0 +1,36 @@
+<div class="products-list row">
+
+  {% if collection.products.size > 0 %}
+
+    {% for product in products limit: 100 %}
+
+      <div class="product-card cell-xl-3 cell-lg-4 cell-sm-6 cell-xs-12">
+        {% include 'product-card' %}
+      </div><!-- /.product-card -->
+
+    {% endfor %}
+
+  {% else %}
+
+    {% if collection.current_characteristics.size > 0 or price_min > 0 %}
+
+      <div class="notices cell-xl-12">
+        <div class="notice notice-warning">
+          <p>{{ messages.collection_filters_is_empty }}</p>
+          <p><a href="{{ collection.url }}" class="action-link is-dark">{{ messages.button_reset_filters }}</a></p>
+        </div>
+      </div><!-- /.notices -->
+
+    {% else %}
+
+      <div class="notices cell-xl-12">
+        <div class="notice notice-info">
+          {{ messages.collection_is_empty }}
+        </div>
+      </div><!-- /.notices -->
+
+    {% endif %}
+
+  {% endif %}
+
+</div><!-- /.products-list -->

@@ -1,0 +1,237 @@
+{
+
+  "collections": {
+    "frontpage": "{{ messages.collection_frontpage }}",
+    "popular": "{{ messages.collection_popular }}"
+  },
+
+  "menus": {
+    "main-menu": "{{ messages.main_menu }}",
+    "footer-menu": "{{ messages.footer_menu }}"
+  },
+
+  "menu_items": {
+    "main-menu": {
+      "{{ messages.page_about }}": "/page/about-us",
+      "{{ messages.page_delivery }}": "/page/delivery",
+      "{{ messages.page_payment }}": "/page/payment",
+      "{{ messages.page_blog }}": "/blogs/blog",
+      "{{ messages.page_contacts }}": "/page/feedback"
+    },
+    "footer-menu": {
+      "{{ messages.page_delivery }}": "/page/delivery",
+      "{{ messages.page_payment }}": "/page/payment",
+      "{{ messages.page_blog }}": "/blogs/blog",
+      "{{ messages.page_contacts }}": "/page/feedback"
+    }
+  },
+
+  "properties": {
+    "label": {
+      "title": "{{ messages.option_label }}",
+      "characteristics": {
+        "new": "{{ messages.option_label_new }}",
+        "sale": "{{ messages.option_label_sale }}"
+      }
+    }
+  },
+
+  "pages": {
+    "about-us": "{{ messages.page_about }}",
+    "delivery": "{{ messages.page_delivery }}",
+    "payment": "{{ messages.page_payment }}"
+  },
+
+  "block_lists": {
+    "benefits": {
+      "title": "{{ messages.block_list_benefits }}",
+      "block_template": "system-benefit",
+      "blocks": ["benefit1", "benefit2", "benefit3"]
+    },
+    "slider": {
+      "title": "{{ messages.block_list_slider }}",
+      "block_template": "system-promo-slide",
+      "blocks": ["slide1", "slide2", "slide3"]
+    },
+    "social": {
+      "title": "{{ messages.block_list_social }}",
+      "block_template": "system-social",
+      "blocks": ["vkontakte", "facebook", "instagram", "youtube", "twitter", "google"]
+    },
+    "special-categories": {
+      "title": "{{ messages.snippet_title_categories }}",
+      "block_template": "system-collection"
+    },
+    "special-products": {
+      "title": "{{ messages.snippet_title_collections }}",
+      "blocks": ["products1", "products2"],
+      "block_template": "system-collection"
+    },
+    "contacts": {
+      "title": "{{ messages.block_list_contacts }}",
+      "blocks": ["phone","email"]
+    }
+  },
+
+  "blocks": {
+    "slide1": {
+      "title": "{{ messages.block_slide1 }}",
+      "description": "{{ messages.block_slide1 }}",
+      "block_template": "system-promo-slide",
+      "image": "slide1.jpg",
+      "link": "/admin2/block_lists_and_blocks"
+    },
+    "slide2": {
+      "title": "{{ messages.block_slide2 }}",
+      "description": "{{ messages.block_slide2 }}",
+      "block_template": "system-promo-slide",
+      "image": "slide2.jpg",
+      "link": "/admin2/block_lists_and_blocks"
+    },
+    "slide3": {
+      "title": "{{ messages.block_slide3 }}",
+      "description": "{{ messages.block_slide3 }}",
+      "block_template": "system-promo-slide",
+      "image": "slide3.jpg",
+      "link": "/admin2/block_lists_and_blocks"
+    },
+    "benefit1": {
+      "title": "{{ messages.block_benefit1 }}",
+      "description": "{{ messages.block_benefit1 }}",
+      "block_template": "system-benefit",
+      "image": "benefit1.png"
+    },
+    "benefit2": {
+      "title": "{{ messages.block_benefit2 }}",
+      "description": "{{ messages.block_benefit2 }}",
+      "block_template": "system-benefit",
+      "image": "benefit2.png"
+    },
+    "benefit3": {
+      "title": "{{ messages.block_benefit3 }}",
+      "description": "{{ messages.block_benefit3 }}",
+      "block_template": "system-benefit",
+      "image": "benefit3.png"
+    },
+    "phone": {
+      "title": "{{ messages.block_phone }}",
+      "content": "+7(999)123-45-67"
+    },
+    "email": {
+      "title": "{{ messages.block_email }}",
+      "content": "sales@company.ru"
+    },
+
+    "products1": {
+      "title": "{{ messages.snippet_title_collections }}",
+      "collection": "frontpage",
+      "block_template": "system-collection"
+    },
+
+    "products2": {
+      "title": "{{ messages.snippet_title_collections }}",
+      "collection": "popular",
+      "block_template": "system-collection"
+    },
+
+    "vkontakte": {
+      "title": "Vkontakte",
+      "link": "http://vk.com/",
+      "block_template": "system-social"
+    },
+    "facebook": {
+      "title": "Facebook",
+      "link": "http://facebook.com/",
+      "block_template": "system-social"
+    },
+    "instagram": {
+      "title": "Instagram",
+      "link": "http://instagram.com/",
+      "block_template": "system-social"
+    },
+    "youtube": {
+      "title": "YouTube",
+      "link": "http://youtube.com/",
+      "block_template": "system-social"
+    },
+    "twitter": {
+      "title": "Twitter",
+      "link": "http://twitter.com/",
+      "block_template": "system-social"
+    },
+    "google": {
+      "title": "Google+",
+      "link": "https://plus.google.com/",
+      "block_template": "system-social"
+    }
+  },
+
+  "theme_widgets": {
+
+    "widget_lists": [
+      {
+        "name": "Index",
+        "handle": "index-list",
+        "widgets": [
+          {
+            "name": "{{ messages.s_subheading_slider }}",
+            "handle": "promo-slider",
+            "widget_type": "promo-slider-type",
+            "data_handle": "slider"
+          },
+          {
+            "name": "{{ messages.s_subheading_benefits }}",
+            "handle": "benefits",
+            "widget_type": "benefits-type",
+            "data_handle": "benefits"
+          },
+          {
+            "name": "{{ messages.s_subheading_special_products }}",
+            "handle": "title-collections",
+            "widget_type": "special-products-type",
+            "data_handle": "special-products"
+          },
+          {
+            "name": "{{ messages.s_subheading_special_categories }}",
+            "handle": "title-categories",
+            "widget_type": "special-categories-type",
+            "data_handle": "special-categories"
+          }
+        ]
+      }
+    ],
+
+    "widget_types": [
+      {
+        "name": "Promo Slider Type",
+        "handle": "promo-slider-type",
+        "type": "block_list_widget_type",
+        "snippet": "promo-slider.liquid",
+        "block_template": "system-promo-slide"
+      },
+      {
+        "name": "Benefits Type",
+        "handle": "benefits-type",
+        "type": "block_list_widget_type",
+        "snippet": "benefits.liquid",
+        "block_template": "system-benefit"
+      },
+      {
+        "name": "Special Categories Type",
+        "handle": "special-categories-type",
+        "type": "block_list_widget_type",
+        "snippet": "title-categories.liquid",
+        "block_template": "system-collection"
+      },
+      {
+        "name": "Special Products Type",
+        "handle": "special-products-type",
+        "type": "block_list_widget_type",
+        "snippet": "title-collections.liquid",
+        "block_template": "system-collection"
+      }
+    ]
+
+  }
+
+}

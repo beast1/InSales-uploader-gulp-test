@@ -1,0 +1,222 @@
+{% assign coll_handler = collection.handle %}
+  {% assign coll_min = collections[coll_handler].products_price_min | round: 0 %}
+  {% assign coll_max = collections[coll_handler].products_price_max | round: 0 %}
+
+  {% if price_min %}
+    {% assign price_min = price_min | round: 0 %}
+  {% else %}
+    {% assign price_min = coll_min %}
+  {% endif %}
+
+  {% if price_max %}
+    {% assign price_max = price_max | round: 0 %}
+  {% else %}
+    {% assign price_max = coll_max %}
+  {% endif %}
+
+{% if collection.products.size > 0 %}
+
+  <form class="collection-toolbar collapse on-mobile" action="{{ collection.url }}" method="get">
+
+    <button type="button" class="button button-primary collapse-toggle hidden-xl shown-sm">
+      <span class="button-text">Фильтры</span>
+      <span class="filter-total-count js-filter-total-counter">0</span>
+      <span class="collapse-icon button-icon icon ion-chevron-down"></span>
+    </button>
+
+    <div class="collapse-block on-mobile row">
+
+      <div class="collection-filters cell-sm-12 cell-md-7 cell-xl-9">
+
+        <div class="filters-block js-edge-calc">
+
+          {% for option in collection.options %}
+
+            {% assign filter_active = false %}
+            {% for value in option.values %}
+              {% if value.selected %}
+                {% assign filters_active = true %}
+                {% assign filter_active = true %}
+              {% endif %}
+            {% endfor %}
+
+            <div class="filter js-filter-checkbox dropdown is-absolute">
+
+              <div class="filter-control">
+                <button class="button button-grey dropdown-toggle js-toggle {% if filter_active %} active {% endif %}"
+                        type="button" data-target="parent" data-group="filters">
+                  <span class="filter-name">{{ option.title }}</span>
+                  <sup class="filter-count js-filter-count"></sup>
+                </button>
+                <button class="button filter-clear js-filter-clear" type="button"><i
+                    class="icon clear-icon ion-ios-close-outline"></i>
+                </button>
+              </div><!-- /.filter-control -->
+
+              <div class="filter-items dropdown-block">
+
+                <ul class="list-vertical js-scrollable items-list">
+
+                  {% for value in option.values %}
+                    <li class="list-item">
+                      <input autocomplete="off" class="js-filter-field checkbox-field" type="checkbox"
+                             value="{{ value.id }}"
+                             {% if value.selected %}checked{% endif %} name="options[{{ option.id }}][]"
+                             id="{{ value.id }}"/>
+                      <label class="checkbox-label" for="{{ value.id }}">{{ value.title }}</label>
+                    </li>
+                  {% endfor %}
+
+                </ul><!-- /.items-list -->
+
+                <div class="dropdown-block-control">
+                  <button class="button button-primary" type="submit">
+                    <span class="button-text">{{ messages.button_apply }}</span>
+                  </button>
+                  <button class="button button-default dropdown-toggle js-toggle" type="button" data-target="parent">
+                    <span class="button-text">{{ messages.button_close }}</span>
+                  </button>
+                </div><!-- /.dropdown-block-control -->
+
+              </div><!-- /.filter-items -->
+
+            </div><!-- /.filter -->
+
+          {% endfor %}
+
+          {% for property in collection.properties %}
+
+            {% assign filter_active = false %}
+            {% for characteristic in property.characteristics %}
+              {% if characteristic.current? %}
+                {% assign filters_active = true %}
+                {% assign filter_active = true %}
+              {% endif %}
+            {% endfor %}
+
+            <div class="filter js-filter-checkbox dropdown is-absolute">
+
+              <div class="filter-control">
+                <button class="button button-grey dropdown-toggle js-toggle {% if filter_active %}active{% endif %}"
+                        type="button" data-target="parent" data-group="filters">
+                  <span class="filter-name">{{ property.title }}</span>
+                  <sup class="filter-count js-filter-count"></sup>
+                </button>
+                <button class="button filter-clear js-filter-clear" type="button"><i
+                    class="icon clear-icon ion-ios-close-outline"></i>
+                </button>
+              </div><!-- /.filter-control -->
+
+              <div class="filter-items dropdown-block">
+
+                <ul class="list-vertical js-scrollable items-list">
+
+                  {% for characteristic in property.characteristics %}
+                    <li class="list-item">
+                      <input autocomplete="off" class="js-filter-field checkbox-field" type="checkbox"
+                             value="{{ characteristic.id }}"
+                             {% if characteristic.current? %}checked{% endif %} name="characteristics[]"
+                             id="{{ characteristic.id }}"/>
+                      <label class="checkbox-label" for="{{ characteristic.id }}">{{ characteristic.title }}</label>
+                    </li>
+                  {% endfor %}
+
+                </ul><!-- /.items-list -->
+
+                <div class="dropdown-block-control">
+                  <button class="button button-primary" type="submit">
+                    <span class="button-text">{{ messages.button_apply }}</span>
+                  </button>
+                  <button class="button button-default dropdown-toggle js-toggle" type="button" data-target="parent">
+                    <span class="button-text">{{ messages.button_close }}</span>
+                  </button>
+                </div><!-- /.dropdown-block-control -->
+
+              </div><!-- /.filter-items -->
+
+            </div><!-- /.filter -->
+
+          {% endfor %}
+
+          <div
+            class="filter dropdown is-absolute {% unless price_max == coll_max and price_min == coll_min %}active{% endunless %}">
+
+            <div class="filter-control">
+              <button class="button button-grey dropdown-toggle js-toggle" type="button" data-target="parent"
+                      data-group="filters">
+                <span class="filter-name">Цена</span>
+                <sup class="filter-count js-filter-count"></sup>
+              </button>
+              <button class="button filter-clear js-filter-price-clear" type="button"><i
+                  class="icon clear-icon ion-ios-close-outline"></i>
+              </button>
+            </div><!-- /.filter-control -->
+
+            <div class="filter-items dropdown-block">
+
+              <div class="filter-body range-slider js-range-slider-wrapper">
+                <div class="js-range-slider"
+                     data-min="{{ coll_min }}"
+                     data-max="{{ coll_max }}"
+                     data-from="{{ price_min }}"
+                     data-to="{{ price_max }}">
+                </div>
+                <div class="range-slider-input">
+                  <input class="js-input-from js-input" type="hidden" name="price_min"
+                         value="{{ price_min }}" {% if price_min == coll_min %} disabled {% endif %}/>
+                  <input class="js-input-to js-input" type="hidden" name="price_max"
+                         value="{{ price_max }}" {% if price_max == coll_max %} disabled {% endif %}/>
+                  <span class="slider-label js-label-from">{{ price_min }}</span>
+                  <span class="slider-label js-label-to">{{ price_max }}</span>
+                </div>
+              </div><!-- /.filter-body -->
+
+              <div class="dropdown-block-control">
+                <button class="button button-primary" type="submit">
+                  <span class="button-text">{{ messages.button_apply }}</span>
+                </button>
+                <button class="button button-default dropdown-toggle js-toggle" type="button" data-target="parent">
+                  <span class="button-text">{{ messages.button_close }}</span>
+                </button>
+              </div><!-- /.dropdown-block-control -->
+
+            </div><!-- /.filter-items -->
+
+          </div><!-- /.filter -->
+
+        </div><!-- /.filters-block -->
+
+      </div><!-- /.collection-filters -->
+
+      <div class="collection-order cell-sm-12 cell-md-5 cell-xl-3">
+
+        <div class="select-wrapper">
+          <select class="select-field js-filter-trigger" name="order">
+            <option value="" disabled selected>{{ messages.label_sort }}</option>
+            {{ "price"            | select_option: order, messages.sort_by_price }}
+            {{ "descending_price" | select_option: order, messages.sort_by_price_desc }}
+            {{ "descending_age"   | select_option: order, messages.sort_by_createdon }}
+            {{ "age"              | select_option: order, messages.sort_by_createdon_desc }}
+            {{ "title"            | select_option: order, messages.sort_by_title }}
+          </select>
+        </div>
+
+      </div><!-- /.collection-order -->
+
+    </div>
+
+    {% if page_size %}
+      <input type="hidden" name="page_size" value="{{ page_size }}"/>
+    {% endif %}
+
+    {% if language.not_default? %}
+      <input type="hidden" name="lang" value="{{ language.locale }}"/>
+    {% endif %}
+
+    {% if search.query != '' %}
+      <input type="hidden" name="q" value="{{ search.query }}"/>
+    {% endif %}
+
+  </form><!-- /.collection-filters -->
+
+{% endif %}

@@ -1,0 +1,15 @@
+<div class="page-header container">
+  <h1>404</h1>
+</div>
+
+{% include 'breadcrumb' %}
+
+{% if page.content != '' %}
+  <div class="page-content container">
+
+    <div class="editor">
+      {{ messages.page_404 }}
+    </div>
+
+  </div>
+{% endif %}

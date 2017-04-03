@@ -1,0 +1,16 @@
+<div class="vk-block">
+  <div class="vk-block__subscribe">
+  	<div id="vk_groups"></div>
+  </div>
+  <div class="vk-block__review">
+    <span class="vk-block__title">Комментарии вконтакте</span>
+    <div id="vk_comments"></div>
+  </div>
+</div>
+
+<script type="text/javascript">// <![CDATA[
+VK.Widgets.Group("vk_groups", {mode: 3, width: "320", height: "280", no_cover: "0", mode: "3", wide: "1"}, 143194407);
+// ]]></script>
+<script type="text/javascript">// <![CDATA[
+VK.Widgets.Comments("vk_comments", {limit: 20, attach: "*"});
+// ]]></script>

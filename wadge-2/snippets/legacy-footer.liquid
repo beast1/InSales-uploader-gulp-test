@@ -1,0 +1,110 @@
+<footer class="page-footer">
+  <div class="page-footer__container">
+    <div class="page-footer__left-section">
+      <!--<div class="logotype ">
+
+      {% if settings.logotype_type == 'image' %}
+
+      <a title="{{ account.title }}" href="/" class="logotype-link">
+        <img src="{{ 'logotype.jpg' | asset_url }}" class="logotype-image" alt="{{ account.title }}" title="{{ account.title }}" />
+      </a>
+
+      {% else %}
+
+        <a title="{{ account.title }}" href="/" class="logotype-link">
+          <span class="logotype-text">{{ account.title | editable }}</span>
+        </a>
+
+      {% endif %}
+
+      </div>--><!-- /.logotype -->
+    <div class="page-footer__sub-nav">
+      <ul class="page-footer__contacts">
+        <lh class="page-footer__contacts-title"><span>Контакты</span></lh>
+        <li class="page-footer__contacts-item">+38(050)23-23-653</li>
+        <li class="page-footer__contacts-item">email@gmail.com</li>
+        <li class="page-footer__contacts-item">skype23</li>
+      </ul>
+      
+      {% if linklists.footer-menu.links.size > 0 %}
+      	<ul class="page-footer__menu">
+          <lh class="page-footer__menu-title"><span>Меню</span></lh>
+          {% for link in linklists.footer-menu.links %}
+          <li class="page-footer__menu-item">
+            <a href="{{ link.url }}" title="{{ link.title }}" class="page-footer__menu-item-link  hvr-underline-reveal  hvr-sweep-to-top">{{ link.title }}</a>
+          </li>
+          {% endfor %}
+        </ul><!-- /.footer-menu -->
+      {% endif %}
+    </div>
+      <div class="page-footer__social">
+        {% for link in linklists.social-list.links limit:10 %}
+          <a href="{{ link.url }}" title="{{ link.title }}" class="page-footer__social-item  hvr-radial-out"></a>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="page-footer__right-section">
+      <div class="logotype "> <!--cell-xl-3 text-center-md cell-md-12-->
+      {% if settings.logotype_type == 'image' %}
+
+      <a title="{{ account.title }}" href="/" class="logotype-link">
+        <img src="https://static-internal.insales.ru/files/1/6486/3037526/original/las-b.png" class="logotype-image" alt="{{ account.title }}" title="{{ account.title }}" />
+        <!--<img src="https://static-internal.insales.ru/files/1/6153/3037193/original/1-main-logo.png"  alt="{{ account.title }}" title="{{ account.title }}" />class="logotype-image"-->
+      </a>
+
+      {% else %}
+
+        <a title="{{ account.title }}" href="/" class="logotype-link">
+          <span class="logotype-text">{{ account.title | editable }}</span>
+        </a>
+
+      {% endif %}
+
+    </div><!-- /.logotype -->
+      
+      <div class="page-footer__vk-subscribe">
+        <div id="vk_groups"></div>
+      </div>
+    </div>
+  </div>
+  
+  <!--{% if block_lists.social.blocks.size > 0 %}
+        {% unless settings.social_media_hide %}
+  
+  			<p class="page-footer__social">
+
+              {% for group in block_lists.social.blocks %}
+
+                {% if group.link contains 'vk.com' %}
+                  <a href="#" class="page-footer__social-item  hvr-radial-out"></a>
+                {% endif %}
+
+                {% if group.link contains 'facebook.com' %}
+                  <a href="#" class="page-footer__social-item  hvr-radial-out"></a>
+                {% endif %}
+
+                {% if group.link contains 'twitter.com' %}
+                  <a href="#" class="page-footer__social-item  hvr-radial-out"></a>
+                {% endif %}
+
+                {% if group.link contains 'youtube.com' %}
+                  <a href="#" class="page-footer__social-item  hvr-radial-out"></a>
+                {% endif %}
+
+                {% if group.link contains 'instagram.com' %}
+                  <a href="#" class="page-footer__social-item  hvr-radial-out"></a>
+                {% endif %}
+
+                {% if group.link contains 'google.com' %}
+                  <a href="#" class="page-footer__social-item  hvr-radial-out"></a>
+                {% endif %}
+
+              {% endfor %}
+
+            </p>
+
+        {% endunless %}
+      {% endif %}-->
+<script type="text/javascript">
+VK.Widgets.Group("vk_groups", {mode: 3, width: "auto", no_cover: "0", mode: "3", wide: "1"}, 143194407);
+</script>

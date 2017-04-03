@@ -1,0 +1,123 @@
+<header class="main-header container">
+  <!--<div class="row middle-x1">-->
+
+    <div class="logotype "> <!--cell-xl-3 text-center-md cell-md-12-->
+      {% if settings.logotype_type == 'image' %}
+      
+      {% if template == 'index' %}
+      
+      <img src="https://static-internal.insales.ru/files/1/5374/3052798/original/las-oo.png" class="logotype-index" alt="{{ account.title }}" title="{{ account.title }}" />
+      
+      {% else %}
+      
+      <a title="{{ account.title }}" href="/" class="logotype-link">
+        <img src="https://static-eu.insales.ru/files/1/6227/3037267/original/1-short-logo.png" class="logotype-image" alt="{{ account.title }}" title="{{ account.title }}" />
+      </a>
+      
+      {% endif %}
+
+      {% else %}
+
+        <a title="{{ account.title }}" href="/" class="logotype-link">
+          <span class="logotype-text">{{ account.title | editable }}</span>
+        </a> 
+
+      
+{% endif %}
+    </div><!-- /.logotype -->
+
+    <div class="main-toolbar "><!--cell-xl-5 cell-md-8 hidden-sm-->
+      <ul class="main-menu "><!--list-->
+        {% for link in linklists.main-menu.links limit:10 %}
+          <li class="menu-item "><!--list-item-->
+            <a href="{{ link.url }}" class="menu-link  hvr-rectangle-out" title="{{ link.title }}">
+              {{ link.title }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul><!-- /.main-menu -->
+    </div><!-- /.main-toolbar -->
+
+    <!--<div class="contacts cell-xl-2 text-right-xl hidden-sm">
+
+      {% case settings.phone %}
+        {% when 'from_settings' %}
+          <div class="phone"><a href="tel:{{ account.phone }}">{{ account.phone | editable }}</a></div>
+        {% when 'edited_block' %}
+          <div class="phone">{{ blocks.phone.content | editable }}</div>
+      {% endcase %}
+
+      {% case settings.email %}
+        {% when 'from_settings' %}
+          <div class="email"><a href="mailto:{{ account.email }}">{{ account.email | editable }}</a></div>
+        {% when 'edited_block' %}
+          <div class="email">{{ blocks.email.content | editable }}</div>
+      {% endcase %}
+
+    </div>--><!-- /.contacts -->
+
+    <div class="user-toolbar"><!--cell-xl-2 text-right-xl hidden-sm-->
+
+      <div class="search-widget dropdown  ">
+
+        <button class="search-trigger button  dropdown-toggle js-toggle  user-toolbar__item  hvr-radial-out" data-target="parent"><!--button-circle is-gray-->
+          <!--<i class="icon search-icon ion-ios-search"></i>-->
+        </button>
+
+        <form action="/search" method="get" class="search-widget-form dropdown-block">
+
+          <input type="hidden" name="lang" value="{{ language.locale }}">
+
+          <input id="search-widget-input" class="input-field search-input" type="text" placeholder="{{ messages.search_title }}" name="q"  value="{% if search.query != empty %}{{ search.query }}{% endif %}"/>
+
+          <button class="button button-circle is-primary search-button" type="submit">
+            <i class="icon search-icon ion-ios-search"></i>
+          </button>
+
+        </form>
+
+      </div><!-- /.search-widget -->
+
+      {% unless settings.product_compare_hide %}
+        <a title="Сравнение" class="compare-button button button-circle is-gray" href="/compares">
+          <i class="icon compare-icon ion-stats-bars"></i>
+          <span class="compare-counter js-compare-amount"></span>
+        </a><!-- /.compare-button -->
+      {% endunless %}
+      
+      {% for link in linklists.user-block.links limit:3 %}
+          <a href="{{ link.url }}" title="{{ link.title }}" class="is-primary  button-circle  user-toolbar__item  user-toolbar__item--generated  hvr-radial-out"><!--button-circle  menu-link  hvr-rectangle-out-->
+            <!--<i class="icon shopcart-icon ion-ios-cart-outline"></i>-->
+          </a>
+      {% endfor %}
+          <a title="Корзина" href="{{ cart_url }}" class="is-primary  btn-basket  button-circle  user-toolbar__item  user-toolbar__item--generated  hvr-radial-out">
+             <span class="shopcart-counter js-shopcart-amount {% if cart.items_count > 0 %}active{% endif %}">
+               {{ cart.items_count | round: 5 }}
+             </span>
+          </a>
+      
+      <!--<div class="shopcart-widget  ">
+        <a title="Корзина" href="{{ cart_url }}" class="shopcart-link button  is-primary  button-circle  user-toolbar__item  hvr-radial-out">
+          <i class="icon shopcart-icon ion-ios-cart-outline"></i>
+          <span class="shopcart-counter js-shopcart-amount {% if cart.items_count > 0 %}active{% endif %}">
+            {{ cart.items_count | round: 5 }}
+          </span>
+        </a>
+      </div>--><!-- /.shopcart-widget -->
+      
+      <!--<div class="shopcart-widget  ">
+        <a title="Корзина" href="{{ cart_url }}" class="shopcart-link button is-primary  button-circle   user-toolbar__item  hvr-radial-out">
+          <i class="icon shopcart-icon ion-ios-cart-outline"></i>
+          <span class="shopcart-counter js-shopcart-amount {% if cart.items_count > 0 %}active{% endif %}">
+            {{ cart.items_count | round: 5 }}
+          </span>
+        </a>
+      </div>--><!-- /.shopcart-widget -->
+
+    </div><!-- /.user-toolbar -->
+
+  <!--</div>-->
+  <!--<div class="color-test">
+    <span class="color-test__var"><div class="color-test__label"></div></span>
+  </div>-->
+</header>

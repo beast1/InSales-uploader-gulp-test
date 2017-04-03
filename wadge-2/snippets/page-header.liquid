@@ -1,0 +1,40 @@
+{% comment %} Заголовок страницы {% endcomment %}
+
+{% assign page_title = '' %}
+
+{% case template %}
+
+  {% when 'cart' %}
+    {% assign page_title = messages.cart_title %}
+
+  {% when 'search' %}
+    {% assign page_title = messages.search_title %}
+
+  {% when 'compare' %}
+    {% assign page_title = messages.comparison_title %}
+
+  {% when 'article' %}
+    {% assign page_title = article.title %}
+
+  {% when 'blog' %}
+    {% assign page_title = blog.title %}
+
+  {% when 'collection' %}
+    {% assign page_title = collection.title %}
+
+  {% when 'product' %}
+    {% assign page_title = product.title %}
+
+{% endcase %}
+
+<div class="page-header container">
+  <h1>
+    {% if page_title != '' %}
+      {{ page_title }}
+    {% else %}
+      {{ title | editable }}
+    {% endif %}
+  </h1>
+</div><!-- /.page-header -->
+
+{% assign page_title = '' %}

@@ -1,0 +1,73 @@
+{% include 'breadcrumb' %}
+
+<div class="collection container">
+  <div class="row">
+
+    {% paginate products by 12 %}
+
+    <div class="collection-inner cell-xl-12">
+
+      {% if filter.title %}
+        <div class="page-header">
+          <h1>{{ filter.title | editable }}</h1>
+        </div>
+      {% else %}
+        <div class="page-header">
+          <h1>{{ collection.title | editable }}</h1>
+        </div>
+      {% endif %}
+
+      {% if paginate.current_page == 1 %}
+        {% if settings.category_description_position == 'before_products' %}
+
+          {% if filter.description %}
+            <div class="content editor">
+              {{ filter.description | editable }}
+            </div>
+          {% else %}
+            {% if collection.description %}
+              <div class="content editor">
+                {{ collection.description | editable }}
+              </div>
+            {% endif %}
+          {% endif %}
+
+        {% endif %}
+      {% endif %}
+
+      {% include 'collection-subcategories' %}
+
+      {% include 'collection-filters' %}
+
+      {% include 'collection-products' %}
+
+      {% include 'collection-toolbar-bot' %}
+
+      {% if settings.category_description_position == 'after_products' %}
+        {% if filter.description %}
+          <div class="content editor">
+            {{ filter.description | editable }}
+          </div>
+        {% else %}
+          {% if collection.description %}
+            <div class="content editor">
+              {{ collection.description | editable }}
+            </div>
+          {% endif %}
+        {% endif %}
+      {% endif %}
+
+      {% if paginate.current_page == 1 %}
+        {% if collection.seo_description %}
+          <div class="content editor">
+            {{ collection.seo_description | editable }}
+          </div>
+        {% endif %}
+      {% endif %}
+
+    </div>
+
+    {% endpaginate %}
+
+  </div>
+</div>

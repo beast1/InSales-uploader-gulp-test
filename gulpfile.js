@@ -4,14 +4,14 @@ var watch = require('gulp-watch');
 
 var options = {
   account: {
-    id: '0123456798',
-    token: '0123456798',
-    url: 'shop-41324.myinsales.ru',
+    id: '61d18b6819951ded26492e1af86a813f',
+    token: 'f30324304e4f50726b382ab556264862',
+    url: 'wadge.ru',
     http: true
   },
   theme: {
-    id: '123456',
-    root: 'my-shop',
+    id: '779284',
+    root: 'wadge-2',
     backup: 'zip',
     update: true,
     startBackup: true
