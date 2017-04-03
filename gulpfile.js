@@ -11,7 +11,7 @@ var options = {
   },
   theme: {
     id: '779284',
-    root: 'wadge-2',
+    root: 'project',
     backup: 'zip',
     update: true,
     startBackup: true
